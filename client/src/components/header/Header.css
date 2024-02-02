@@ -73,3 +73,8 @@
     border: none;
     outline: none;
 }
+
+.headerSearchText{
+    color: lightgray;
+    cursor: pointer;
+}
