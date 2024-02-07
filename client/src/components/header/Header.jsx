@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import '../header/Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBed, faCalendarDays, faCar, faPerson, faPlaceOfWorship, faTaxi } from '@fortawesome/free-solid-svg-icons'
@@ -16,6 +16,13 @@ const Header = () => {
             key: 'selection'
         },
     ]);
+
+    const [openOptions, setOpenOptions] = useState(false)
+    const [options, setOptions] = useState({
+        adult: 1,
+        children: 0,
+        room: 1,
+    });
 
     return (
         <div className='header'>
@@ -50,7 +57,7 @@ const Header = () => {
                     </div>
                     <div className='headerSearchItem'>
                         <FontAwesomeIcon icon={faCalendarDays} className='headerIcon' />
-                        <span onClick={()=>setOpenDate(!openDate)} className='headerSearchText'>{`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(date[0].endDate, "dd/MM/yyyy")} `}</span>
+                        <span onClick={() => setOpenDate(!openDate)} className='headerSearchText'>{`${format(date[0].startDate, "dd/MM/yyyy")} to ${format(date[0].endDate, "dd/MM/yyyy")} `}</span>
                         {openDate && <DateRange
                             editableDateInputs={true}
                             onChange={(item) => setDate([item.selection])}
@@ -61,7 +68,7 @@ const Header = () => {
                     </div>
                     <div className='headerSearchItem'>
                         <FontAwesomeIcon icon={faPerson} className='headerIcon' />
-                        <span className='headerSearchText'>2 adults 2 children 1 room</span>
+                        <span className='headerSearchText'>{`${options.adult} adult . ${options.children} children . ${options.room} room `}</span>
                     </div>
                     <div className='headerSearchItem'>
                         <button className='headerBtn'>Search</button>
